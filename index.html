@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Mushroapp</title>
+        <style>
+            body {
+                background-color: black;
+                margin: 0px;
+                padding: 0px;
+            }
+            #vid {
+                height: 100vh;
+                position: absolute;
+                left: 0px;
+                top: 0px;
+            }
+        </style>
+    </head>
+    <body>
+        <video autoplay="true" id="vid"></video>
+        <canvas id="can"></canvas>
+        <script>
+            var cwid, chei, cdimcal, can;
+            function canvas() {
+                can = document.getElementById("can"), vid = document.getElementById("vid");
+                cdimcal = vid.videoWidth / vid.videoHeight;
+                cwid = window.innerHeight * cdimcal;
+                chei = window.innerHeight;
+                can.width = cwid, can.style.width = cwid + "px";
+                can.height = chei, can.style.height = chei + "px";
+            }
+            function draw(x, y, width, height) {
+                ctx = document.getElementById("can").getContext('2d');
+                var image = new Image();
+                image.src = 'seened/1.png';
+                ctx.drawImage(image,5,5);
+            }
+
+
+
+            var video = document.getElementById("vid");
+
+            if (navigator.mediaDevices.getUserMedia) {
+                navigator.mediaDevices.getUserMedia({ video: true })
+                .then(function (stream) {
+                    video.srcObject = stream;
+                })
+                .catch(function (err0r) {
+                    console.log("Something went wrong!");
+                });
+            }
+            function stop(e) {
+                var stream = video.srcObject;
+                var tracks = stream.getTracks();
+                for (var i = 0; i < tracks.length; i++) {
+                    var track = tracks[i];
+                    track.stop();
+                }
+                video.srcObject = null;
+            }
+        </script>
+    </body>
+</html>
