@@ -2,7 +2,6 @@
 <html>
     <head>
         <title>Mushroapp</title>
-        <title>Document</title>
         <script defer src="face-api.min.js"></script>
         <script defer src="script.js"></script>
         <style>
@@ -12,11 +11,19 @@
                 padding: 0px;
             }
             #vid {
-                height: 100vh;
-                width: 100%;
+                /*height: 100vh;*/
                 position: absolute;
                 left: 0px;
                 top: 0px;
+                z-index: -1;
+            }
+            #can {
+                /*width: 100%;
+                height: 100vh;*/
+                position: absolute;
+                left: 0px;
+                top: 0px;
+                z-index: 1;
             }
             </style>
     </head>

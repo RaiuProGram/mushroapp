@@ -1,20 +1,22 @@
 var vid = document.getElementById('vid');
 var can = document.getElementById('can');
+var dx, dy;
 function canvas() {
-    can = document.getElementById("can"), vid = document.getElementById("vid");
-    cdimcal = vid.videoWidth / vid.videoHeight;
-    cwid = window.innerHeight * cdimcal;
-    chei = window.innerHeight;
-    can.width = cwid, can.style.width = cwid + "px";
-    can.height = chei, can.style.height = chei + "px";
+    can.width = window.innerWidth
+    can.height = window.innerHeight;
+    canwid = vid.videoHeight * (vid.videoWidth / vid.videoHeight);
+    dx = vid.videoHeight * (vid.videoWidth / vid.videoHeight) / vid.videoWidth;
+    dy = window.innerHeight / vid.videoHeight;
 }
 function draw(fx, fy, fw, fh) {
     var image = new Image();
     image.src = 'seened/1.png';
-    x = fx + (fw / 2) - image.width / 2;
-    y = fy - image.width - 20;
+    x = fx + (fw / 2) - (image.width / 2);
+    y = fy - 0;
     ctx = document.getElementById("can").getContext('2d');
-    ctx.drawImage(image, x, y);
+    ctx.drawImage(image, fx, fy);
+
+    console.log(image.height);
 }
 
 Promise.all([
@@ -25,6 +27,7 @@ Promise.all([
 ]).then(startVideo);
 
 function startVideo() {
+    canvas();
     if (navigator.mediaDevices.getUserMedia) {
         navigator.mediaDevices.getUserMedia({ video: true })
         .then(function (stream) {
@@ -39,10 +42,9 @@ function startVideo() {
 vid.addEventListener('play', () => {
     setInterval(async () => {
         const detections = await faceapi.detectAllFaces(vid, new faceapi.TinyFaceDetectorOptions());
-        console.log(detections);
+        //console.log(detections);
         if (detections.length > 0) {
-            draw(detections.o.box.x, detections.o.box.y, detections.o.box.width, detections.o.box.height);
+            draw(detections[0].box.x, detections[0].box.y, detections[0].box.width, detections[0].box.height);
         }
     }, 500)
 });
-canvas();
