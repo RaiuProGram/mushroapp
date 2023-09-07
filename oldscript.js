@@ -3,27 +3,23 @@ var video = document.getElementById("vid");
 
 
 function canvas() {
-    can = document.getElementById("can"), vid = document.getElementById("vid");
-    cdimcal = vid.videoWidth / vid.videoHeight;
+    cdimcal = video.videoWidth / video.videoHeight;
     cwid = window.innerHeight * cdimcal;
     chei = window.innerHeight;
     can.width = cwid, can.style.width = cwid + "px";
     can.height = chei, can.style.height = chei + "px";
+    
 }
 function draw(x, y, width, height) {
     ctx = document.getElementById("can").getContext('2d');
-    var image = new Image();
-    image.src = 'seened/1.png';
-    ctx.drawImage(image,5,5);
+
+    
 }
 
 
 
 Promise.all([
-    faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
-    faceapi.nets.faceLandmark68Net.loadFromUri('/models'),
-    faceapi.nets.faceRecognitionNet.loadFromUri('/models'),
-    faceapi.nets.faceExpressionNet.loadFromUri('/models')
+    faceapi.nets.tinyFaceDetector.loadFromUri('/models')
 ]).then(startVideo);
 if (navigator.mediaDevices.getUserMedia) {
     navigator.mediaDevices.getUserMedia({ video: true })

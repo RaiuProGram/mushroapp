@@ -9,18 +9,20 @@
                 background-color: black;
                 margin: 0px;
                 padding: 0px;
+                float: left;
+                display: block;
             }
             #vid {
-                /*height: 100vh;*/
+                height: 100vh;
                 position: absolute;
+                float: left;
                 left: 0px;
                 top: 0px;
                 z-index: -1;
             }
-            #can {
-                /*width: 100%;
-                height: 100vh;*/
+            .mushroom {
                 position: absolute;
+                float: left;
                 left: 0px;
                 top: 0px;
                 z-index: 1;
@@ -29,6 +31,8 @@
     </head>
     <body>
         <video autoplay muted id="vid"></video>
-        <canvas id="can"></canvas>
+        <image src="seened/0.png" class="mushroom" id="m0"/>
+        <image src="seened/1.png" class="mushroom" id="m1"/>
+        <image src="seened/0.png" class="mushroom" id="m2"/>
     </body>
 </html>
