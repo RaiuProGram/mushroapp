@@ -49,6 +49,22 @@ vid.addEventListener('play', () => {
         //console.log(detections);
         if (detections.length > 0) {
             draw(detections[0].box.x, detections[0].box.y, detections[0].box.width, detections[0].box.height, 0);
+            img[0].style.display = "block";
+        } else {
+            img[0].style.display = "none";
         }
+        if (detections.length > 1) {
+            draw(detections[0].box.x, detections[1].box.y, detections[1].box.width, detections[1].box.height, 1);
+            img[1].style.display = "block";
+        } else {
+            img[1].style.display = "none";
+        }
+        if (detections.length > 2) {
+            draw(detections[2].box.x, detections[2].box.y, detections[2].box.width, detections[2].box.height, 2);
+            img[2].style.display = "block";
+        } else {
+            img[2].style.display = "none";
+        }
+        
     }, 500)
 });
