@@ -12,7 +12,7 @@ function load() {
 function draw(fx, fy, fw, fh, p) {
     fx *= dx, fy *= dy, fw *= dx, fh *= dy;
     imgw = fw * 3;
-    imgh = imgw * imgd[p];
+    imgh = imgw / imgd[p];
     x = fx + (fw / 2) - (imgw / 2);
     y = fy - imgh - imgfd[p];
     img[p].style.left = (x / dx) + "px";
